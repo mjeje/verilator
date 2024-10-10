@@ -2906,7 +2906,7 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
     int size = vpi_get(vpiSize, object);
     int index = index_p[0];
 
-    static thread_local EData out_ptr[VL_VALUE_STRING_MAX_WORDS * 2];
+    static thread_local EData out_ptr[VL_REGARRAY_MAX_WORDS * 2];
 
     if (arrayvalue_p->format == vpiIntVal) {
         PLI_INT32 *integers;
@@ -2914,9 +2914,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
         if (arrayvalue_p->flags & vpiUserAllocFlag) {
             integers = arrayvalue_p->value.integers;
         } else {
-            if (VL_UNCOVERABLE(num >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(num >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
@@ -2955,9 +2955,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
             shortints = arrayvalue_p->value.shortints;
         } else {
             const int words = VL_WORDS_I(num * 16);
-            if (VL_UNCOVERABLE(words >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(words >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
@@ -2980,9 +2980,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
             longints = arrayvalue_p->value.longints;
         } else {
             const int words = VL_WORDS_I(num * 64);
-            if (VL_UNCOVERABLE(words >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(words >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
@@ -3022,9 +3022,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
             }
 
             const int words = VL_WORDS_I(ngroups * 8 * num);
-            if (VL_UNCOVERABLE(words >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(words >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
@@ -3112,9 +3112,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
             }
 
             const int words = VL_WORDS_I(ngroups * 8 * num);
-            if (VL_UNCOVERABLE(words >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(words >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
@@ -3175,9 +3175,9 @@ void vl_get_value_array(vpiHandle object, p_vpi_arrayvalue arrayvalue_p,
         if (arrayvalue_p->flags & vpiUserAllocFlag) {
             reals = arrayvalue_p->value.reals;
         } else {
-            if (VL_UNCOVERABLE(num >= VL_VALUE_STRING_MAX_WORDS)) {
+            if (VL_UNCOVERABLE(num >= VL_REGARRAY_MAX_WORDS)) {
                 VL_FATAL_MT(__FILE__, __LINE__, "",
-                            "vpi_get_value_array with more than VL_VALUE_STRING_MAX_WORDS; "
+                            "vpi_get_value_array with more than VL_REGARRAY_MAX_WORDS; "
                             "increase and recompile");
             }
 
